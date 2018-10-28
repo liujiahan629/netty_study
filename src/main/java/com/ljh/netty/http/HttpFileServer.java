@@ -16,14 +16,20 @@ import io.netty.handler.stream.ChunkedWriteHandler;
  * @author liujiahan
  * @Title: HttpFileServer
  * @Copyright: Copyright (c) 2018
- * @Description:
+ * @Description: 基于Netty开发的HTTP Server端
  * @Created on 2018/10/27
  * @ModifiedBy:
  */
 public class HttpFileServer {
 
+
     private static final String DEFAULT_URL = "/src/main/java/com/ljh/netty/";
 
+    /**
+     * 入口方法，Netty编写服务端的基本流程
+     * @param port 端口号
+     * @param url 访问地址
+     */
     public void run(final int port, final String url) {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -33,10 +39,15 @@ public class HttpFileServer {
             b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class).childHandler(new ChannelInitializer<SocketChannel>() {
                 @Override
                 protected void initChannel(SocketChannel ch) throws Exception {
+                    //1,http请求消息解码器
                     ch.pipeline().addLast("http-decoder", new HttpRequestDecoder());
+                    //2，HttpObjectAggregator将多个消息转换为单一的FullHttpRequest或者FullHttpResponse
                     ch.pipeline().addLast("http-aggregator", new HttpObjectAggregator(65536));
+                    //3,http响应编码器
                     ch.pipeline().addLast("http-encoder", new HttpResponseEncoder());
+                    //4,ChunkedWriteHandler 支持异步发送大的码流
                     ch.pipeline().addLast("http-chunked", new ChunkedWriteHandler());
+                    //5,业务处理
                     ch.pipeline().addLast("fileServerHandler", new HttpFileServerHandler(url));
                 }
             });
@@ -50,6 +61,7 @@ public class HttpFileServer {
             workerGroup.shutdownGracefully();
         }
     }
+
 
     public static void main(String[] args) {
         int port = 8091;
