@@ -23,6 +23,13 @@ public class HttpXmlResponseDecoder extends AbstractHttpXmlDecoder<DefaultFullHt
         super(clazz, isPrint);
     }
 
+    /**
+     * 利用父类的decode0进行解码
+     * @param ctx
+     * @param msg
+     * @param out
+     * @throws Exception
+     */
     @Override
     protected void decode(ChannelHandlerContext ctx, DefaultFullHttpResponse msg, List<Object> out) throws Exception {
         HttpXmlResponse resHttpXmlResponse = new HttpXmlResponse(msg,decode0(ctx,msg.content()));

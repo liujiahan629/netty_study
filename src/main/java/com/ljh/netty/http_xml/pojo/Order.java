@@ -1,5 +1,7 @@
 package com.ljh.netty.http_xml.pojo;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
 /**
  * @author liujiahan
  * @Title: Order
@@ -8,6 +10,7 @@ package com.ljh.netty.http_xml.pojo;
  * @Created on 2018/10/29
  * @ModifiedBy:
  */
+@XStreamAlias("Order")
 public class Order {
 
     private long orderNumber;

@@ -22,6 +22,12 @@ import io.netty.util.concurrent.GenericFutureListener;
  * @ModifiedBy:
  */
 public class HttpXmlServerHandler extends SimpleChannelInboundHandler<HttpXmlRequest> {
+    /**
+     * 接受到消息进行print，并编写返回信息
+     * @param ctx
+     * @param msg
+     * @throws Exception
+     */
     @Override
     protected void messageReceived(final ChannelHandlerContext ctx, HttpXmlRequest msg) throws Exception {
         HttpRequest request = msg.getRequest();
@@ -53,6 +59,11 @@ public class HttpXmlServerHandler extends SimpleChannelInboundHandler<HttpXmlReq
         }
     }
 
+    /**
+     * 发生error进行发送
+     * @param ctx
+     * @param status
+     */
     private static void sendError(ChannelHandlerContext ctx, HttpResponseStatus status) {
         FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, status, Unpooled.copiedBuffer("shibai:" + status.toString() + "\r\n", CharsetUtil.UTF_8));
         response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain;charset=UTF-8");

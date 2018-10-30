@@ -1,5 +1,6 @@
 package com.ljh.netty.http_xml.test;
 
+import com.ljh.netty.http_xml.codec.XstreamUtil;
 import com.ljh.netty.http_xml.pojo.Order;
 import org.jibx.runtime.*;
 
@@ -46,9 +47,11 @@ public class TestOrder {
     public static void main(String[] args) throws JiBXException, IOException {
         TestOrder testOrder = new TestOrder();
         Order order = OrderFactory.create(1111);
-        String body = testOrder.encode2Xml(order);
+        //String body = testOrder.encode2Xml(order);
+        String body = XstreamUtil.toXml(order);
         System.out.println(body);
-        Order order1 = testOrder.decode2Order(body);
+        //Order order1 = testOrder.decode2Order(body);
+        Order order1 = XstreamUtil.toBean(body,Order.class);
         System.out.println(order1);
     }
 }

@@ -15,6 +15,13 @@ import java.util.List;
  * @ModifiedBy:
  */
 public class HttpXmlResponseEncoder extends AbstractHttpXmlEncoder<HttpXmlResponse> {
+    /**
+     * 利用父类的encode0进行编码
+     * @param ctx
+     * @param msg
+     * @param out
+     * @throws Exception
+     */
     @Override
     protected void encode(ChannelHandlerContext ctx, HttpXmlResponse msg, List<Object> out) throws Exception {
 

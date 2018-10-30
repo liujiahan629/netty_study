@@ -1,8 +1,6 @@
 package com.ljh.netty.http_xml.server;
 
-import com.ljh.netty.http.HttpFileServer;
-import com.ljh.netty.http.HttpFileServerHandler;
-import com.ljh.netty.http_xml.client.HttpXmlClient;
+
 import com.ljh.netty.http_xml.codec.HttpXmlRequestDecoder;
 import com.ljh.netty.http_xml.pojo.Order;
 import io.netty.bootstrap.ServerBootstrap;
@@ -15,7 +13,6 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
-import io.netty.handler.stream.ChunkedWriteHandler;
 
 import java.net.InetSocketAddress;
 

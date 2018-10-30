@@ -37,6 +37,13 @@ public abstract class AbstractHttpXmlDecoder<T> extends MessageToMessageDecoder<
         this.isPrint = isPrint;
     }
 
+    /**
+     *
+     * @param ctx
+     * @param body
+     * @return 将xml转换为对象
+     * @throws Exception
+     */
     protected Object decode0(ChannelHandlerContext ctx, ByteBuf body) throws Exception {
         factory = BindingDirectory.getFactory(clazz);
         String content = body.toString(UTF_8);

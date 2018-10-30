@@ -16,6 +16,14 @@ import java.util.List;
  * @ModifiedBy:
  */
 public class HttpXmlRequestEncoder extends AbstractHttpXmlEncoder<HttpXmlRequest>{
+
+    /**
+     * 对httpRequest进行编码
+     * @param ctx
+     * @param msg
+     * @param out
+     * @throws Exception
+     */
     @Override
     protected void encode(ChannelHandlerContext ctx, HttpXmlRequest msg, List<Object> out) throws Exception {
         ByteBuf body = encode0(ctx,msg.getBody());

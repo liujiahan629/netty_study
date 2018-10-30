@@ -13,7 +13,7 @@ import java.util.List;
  * @author liujiahan
  * @Title: HttpXmlRequestDecoder
  * @Copyright: Copyright (c) 2018
- * @Description:
+ * @Description: 请求实体的解码处理器
  * @Created on 2018/10/29
  * @ModifiedBy:
  */
@@ -34,12 +34,16 @@ public class HttpXmlRequestDecoder extends AbstractHttpXmlDecoder<FullHttpReques
             sendError(ctx,HttpResponseStatus.BAD_REQUEST);
             return;
         }
-
+        //利用父类的decode0进行转换为对象
         HttpXmlRequest request = new HttpXmlRequest(msg, decode0(ctx, msg.content()));
         out.add(request);
     }
 
-
+    /**
+     * 错误处理
+     * @param ctx
+     * @param status
+     */
     private static void sendError(ChannelHandlerContext ctx, HttpResponseStatus status) {
         FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, status, Unpooled.copiedBuffer("Failure:" + status.toString() + "\r\n", CharsetUtil.UTF_8));
         response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain;charset=UTF-8");

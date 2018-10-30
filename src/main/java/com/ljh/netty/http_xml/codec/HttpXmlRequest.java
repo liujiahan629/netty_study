@@ -6,7 +6,7 @@ import io.netty.handler.codec.http.FullHttpRequest;
  * @author liujiahan
  * @Title: HttpXmlRequest
  * @Copyright: Copyright (c) 2018
- * @Description:
+ * @Description: 请求封装实体
  * @Created on 2018/10/29
  * @ModifiedBy:
  */

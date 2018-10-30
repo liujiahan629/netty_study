@@ -16,6 +16,12 @@ import io.netty.channel.SimpleChannelInboundHandler;
  */
 public class HttpXmlClientHandler extends SimpleChannelInboundHandler<HttpXmlResponse> {
 
+    /**
+     * 接受到消息进行print
+     * @param ctx
+     * @param msg
+     * @throws Exception
+     */
     @Override
     protected void messageReceived(ChannelHandlerContext ctx, HttpXmlResponse msg) throws Exception {
         System.out.println("the client receive response of http header is: " +msg.getHttpResponse().headers().names());
@@ -28,6 +34,11 @@ public class HttpXmlClientHandler extends SimpleChannelInboundHandler<HttpXmlRes
         ctx.close();
     }
 
+    /**
+     * 向server发送消息
+     * @param ctx
+     * @throws Exception
+     */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         HttpXmlRequest request = new HttpXmlRequest(null, OrderFactory.create(123));

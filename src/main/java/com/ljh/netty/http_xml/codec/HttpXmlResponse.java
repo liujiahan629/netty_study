@@ -6,7 +6,7 @@ import io.netty.handler.codec.http.FullHttpResponse;
  * @author liujiahan
  * @Title: HttpXmlResponse
  * @Copyright: Copyright (c) 2018
- * @Description:
+ * @Description: 封装response的实体类
  * @Created on 2018/10/29
  * @ModifiedBy:
  */
