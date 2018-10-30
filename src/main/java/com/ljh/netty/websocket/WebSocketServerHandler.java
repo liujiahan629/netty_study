@@ -107,6 +107,7 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
         if(logger.isLoggable(Level.FINE)){
             logger.fine(String.format("%s received %s",ctx.channel(),request));
         }
+        System.out.println("server 接受到的信息：" + request);
         ctx.channel().write(new TextWebSocketFrame(request + " ,欢迎使用netty websocket服务，现在时刻：" + new Date().toString()));
     }
 

@@ -37,6 +37,7 @@
                 }
                 if(socket.readyState = WebSocket.OPEN){
                     socket.send(message);
+                    socket.send("ljh study netty")
                 }else{
                     alert("WebSocket连接没有建立成功！");
                 }
