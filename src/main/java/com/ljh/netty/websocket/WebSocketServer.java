@@ -60,8 +60,6 @@ public class WebSocketServer {
             }
         }
 
-
         new WebSocketServer().run(port);
-
     }
 }
