@@ -39,7 +39,7 @@ public class MarshallingEncoder {
             //开始往butebuf中编码
             marshaller.start(output);
             marshaller.writeObject(msg);
-            //编码长度
+            //编码结束
             marshaller.finish();
             //设置对象长度
             out.setInt(lengthPos, out.writerIndex() - lengthPos - 4);
