@@ -1,5 +1,7 @@
 package com.ljh.netty.design_pattern.proxy_pattern;
 
+import java.lang.reflect.Proxy;
+
 /**
  * @author liujiahan
  * @Title: ProxyPatternDemo
@@ -16,5 +18,12 @@ public class ProxyPatternDemo {
         image.display();
         System.out.println("-------------------------");
         image.display();
+
+
+        Image realImage = new RealImage("ljh-reflaction");
+        Image proxyImage = (Image) Proxy.newProxyInstance(Image.class.getClassLoader(),new Class[]{Image.class},new DynamicProxyHandler(realImage));
+
+        proxyImage.display();
+
     }
 }

@@ -12,6 +12,7 @@ public class RealImage implements Image {
 
     private String fileName;
 
+
     public RealImage(String fileName){
         this.fileName=fileName;
         loadFromDisk(fileName);
@@ -24,5 +25,13 @@ public class RealImage implements Image {
 
     private void loadFromDisk(String fileName){
         System.out.println("loading" + fileName);
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }
