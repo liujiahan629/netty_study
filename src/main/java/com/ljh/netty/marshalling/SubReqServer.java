@@ -23,23 +23,22 @@ public class SubReqServer {
 
     public void bind(int port){
         EventLoopGroup bossGroup = new NioEventLoopGroup();
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
-        try{
+            EventLoopGroup workerGroup = new NioEventLoopGroup();
+            try{
 
-            ServerBootstrap b =new ServerBootstrap();
-            b.group(bossGroup,workerGroup).channel(NioServerSocketChannel.class).option(ChannelOption.SO_BACKLOG,100).handler(new LoggingHandler(LogLevel.INFO)).childHandler(new ChannelInitializer<SocketChannel>() {
-
-                @Override
-                protected void initChannel(SocketChannel socketChannel) throws Exception {
-                    //解码
-                    socketChannel.pipeline().addLast(MarshallingCodeFactory.buildMarshallingDecoder());
-                    //编码
-                    socketChannel.pipeline().addLast(MarshallingCodeFactory.buildMarshallingEncoder());
-                    socketChannel.pipeline().addLast(new SubReqServerHandler());
-                }
-            });
-            ChannelFuture f =b.bind(port).sync();
-            f.channel().closeFuture().sync();
+                ServerBootstrap b =new ServerBootstrap();
+                b.group(bossGroup,workerGroup).channel(NioServerSocketChannel.class).option(ChannelOption.SO_BACKLOG,100).handler(new LoggingHandler(LogLevel.INFO)).childHandler(new ChannelInitializer<SocketChannel>() {
+                    @Override
+                    protected void initChannel(SocketChannel socketChannel) throws Exception {
+                        //解码
+                        socketChannel.pipeline().addLast(MarshallingCodeFactory.buildMarshallingDecoder());
+                        //编码
+                        socketChannel.pipeline().addLast(MarshallingCodeFactory.buildMarshallingEncoder());
+                        socketChannel.pipeline().addLast(new SubReqServerHandler());
+                    }
+                });
+                ChannelFuture f =b.bind(port).sync();
+                f.channel().closeFuture().sync();
         }catch (Exception e){
             e.printStackTrace();
         }finally {
